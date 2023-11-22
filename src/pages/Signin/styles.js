@@ -38,17 +38,17 @@ export const AreaLogo = styled.div`
 `;
 
 export const ImgLogo = styled.img`
-  width: 240;
-  height: 270;
   padding: 10%;
 `;
 
 export const Title = styled.text`
   display: flex;
-  justify-content: center;
+  justify-items: center;
   align-items: center;
+  text-align: center;
 
-  color: white;
+  color: #c8d8ff;
+  width: 217px;
   font-size: 30px;
   /* font-style: italic; */
   font-weight: 600;
