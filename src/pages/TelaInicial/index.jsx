@@ -1,21 +1,30 @@
 import React from "react";
 
+import { FiArrowRight } from "react-icons/fi";
+
 // ESTILIZAÇÃO
 import {
   StyledRoutesPageContainer,
   DivArea,
-  TextBoasVindas,
+  NameText,
   TextInstrucao,
+  HelloText,
 } from "./styles";
 
 export function TelaInicial() {
   return (
     <>
       <StyledRoutesPageContainer>
+        {/* Ícone */}
+        <BotaoVoltar>
+          <FiArrowRight />
+        </BotaoVoltar>
+
         <DivArea>
-          <TextBoasVindas>Olá, Gabriel Nobre</TextBoasVindas>
+          <HelloText>Olá,</HelloText>
+          <NameText>Gabriel Nobre</NameText>
           <TextInstrucao>
-            Selecione os campos abaixo para entrar no grupo
+            Selecione os campos abaixo {"\n"} para entrar no grupo
           </TextInstrucao>
         </DivArea>
       </StyledRoutesPageContainer>
