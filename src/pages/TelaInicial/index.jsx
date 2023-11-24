@@ -1,14 +1,16 @@
 import React from "react";
 
-import { FiArrowRight } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 
 // ESTILIZAÇÃO
 import {
   StyledRoutesPageContainer,
+  BotaoVoltar,
   DivArea,
   NameText,
   TextInstrucao,
   HelloText,
+  AreaCurso,
 } from "./styles";
 
 export function TelaInicial() {
@@ -17,7 +19,7 @@ export function TelaInicial() {
       <StyledRoutesPageContainer>
         {/* Ícone */}
         <BotaoVoltar>
-          <FiArrowRight />
+          <FiArrowLeft color="Blue" size={25} />
         </BotaoVoltar>
 
         <DivArea>
@@ -26,6 +28,7 @@ export function TelaInicial() {
           <TextInstrucao>
             Selecione os campos abaixo {"\n"} para entrar no grupo
           </TextInstrucao>
+          <AreaCurso>Select </AreaCurso>
         </DivArea>
       </StyledRoutesPageContainer>
     </>

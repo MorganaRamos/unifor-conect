@@ -8,10 +8,24 @@ export const StyledRoutesPageContainer = styled.div`
   background: linear-gradient(119deg, #0b44c9 14.09%, #031d5b 94.41%);
 `;
 
-export const BotaoVoltar = styled.div``;
+export const BotaoVoltar = styled.div`
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: white;
+  cursor: pointer;
+  border-radius: 50%;
+
+  margin-bottom: 60px;
+`;
 
 export const DivArea = styled.div`
-  /* padding: 80px, 0, 0, 80px; */
+  padding-left: 30px;
+  /* background-color: red; */
 `;
 
 export const HelloText = styled.div`
@@ -31,4 +45,8 @@ export const TextInstrucao = styled.div`
   font-size: 10px;
   font-weight: 4;
   white-space: pre-line;
+`;
+
+export const AreaCurso = styled.div`
+  margin-top: 70px;
 `;
