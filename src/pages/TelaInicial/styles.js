@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const StyledRoutesPageContainer = styled.div`
-  width: 100%;
-
   padding: 40px;
   min-height: 100vh;
   background: linear-gradient(119deg, #0b44c9 14.09%, #031d5b 94.41%);
@@ -17,10 +15,11 @@ export const BotaoVoltar = styled.div`
   align-items: center;
 
   background-color: white;
-  cursor: pointer;
   border-radius: 50%;
 
   margin-bottom: 60px;
+
+  cursor: pointer;
 `;
 
 export const DivArea = styled.div`
@@ -48,5 +47,37 @@ export const TextInstrucao = styled.div`
 `;
 
 export const AreaCurso = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   margin-top: 70px;
+  gap: 20px;
+`;
+
+export const AreaSelect = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const TextCurso = styled.text`
+  font-size: 20px;
+`;
+
+export const ButtonProximo = styled.div`
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 50%;
+
+  margin-bottom: 60px;
+
+  cursor: pointer;
 `;
