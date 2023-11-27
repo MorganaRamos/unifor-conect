@@ -25,9 +25,7 @@ export const StyledDivArea = styled.div`
   backdrop-filter: blur(20px);
 `;
 
-export const DivArea = styled.div`
-  /* Estilos para DivArea */
-`;
+export const DivArea = styled.div``;
 
 export const AreaLogo = styled.div`
   display: flex;
@@ -38,13 +36,12 @@ export const AreaLogo = styled.div`
 `;
 
 export const ImgLogo = styled.img`
+  width: 230px;
   padding: 10%;
 `;
 
 export const Title = styled.text`
-  display: flex;
-  justify-items: center;
-  align-items: center;
+  white-space: pre-line;
   text-align: center;
 
   color: #c8d8ff;

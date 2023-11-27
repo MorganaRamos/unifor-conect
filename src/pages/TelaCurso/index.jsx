@@ -18,13 +18,30 @@ import {
   TextCurso,
   ButtonProximo,
 } from "./styles";
+import { setOptions } from "leaflet";
 
-export function TelaInicial() {
+export function TelaCurso() {
   const [selectedOption, setSelectedOption] = useState("");
+  // const [options, setOptions] = useState([]);
 
   const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
+    setSelectedOption?.(event.target.value);
   };
+
+  // PARA RECEBER A API
+  // useEffect(() => {
+  //   const fetchOptions = async () => {
+  //     try {
+  //       const response = await fetch("URL_DA_SUA_API_AQUI");
+  //       const data = await response.json();
+  //       setOptions(data);
+  //     } catch (error) {
+  //       console.error("Erro ao buscar opções da API", error);
+  //     }
+  //   };
+
+  //   fetchOptions();
+  // }, []);
 
   const options = [
     { value: "option1", label: "ADS" },
@@ -44,7 +61,7 @@ export function TelaInicial() {
           <HelloText>Olá,</HelloText>
           <NameText>Gabriel Nobre</NameText>
           <TextInstrucao>
-            Selecione os campos abaixo {"\n"} para entrar no grupo
+            Selecione o campo abaixo{"\n"}para entrar no grupo
           </TextInstrucao>
         </DivArea>
 

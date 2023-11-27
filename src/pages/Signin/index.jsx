@@ -32,7 +32,7 @@ export function Signin() {
           <DivArea>
             <AreaLogo>
               <ImgLogo src={Logo} />
-              <Title>UNIFOR CONNECT</Title>
+              <Title>UNIFOR{"\n"}CONNECT</Title>
             </AreaLogo>
 
             <DivLogin>

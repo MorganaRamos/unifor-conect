@@ -6,13 +6,12 @@ export const Container = styled.button`
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   padding: 0 21px; /* Ajuste do espaçamento interno */
   gap: 10px;
-  border-radius: 5px;
+  border-radius: 12px;
 
-  background: #002373;
-  ${({ isActive }) => (isActive ? "#002373" : "#F16522")};
+  background: ${({ isActive }) => (isActive ? "#2460a9" : "#002373")};
   color: white;
 
   &:hover {
