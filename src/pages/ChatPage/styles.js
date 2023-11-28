@@ -16,10 +16,13 @@ export const Area = styled.div`
 `;
 
 export const AreaMessage = styled.div`
-  width: 100%;
+  display: flex;
 
+  width: 100%;
   margin: 20px;
 
+  position: fixed;
+  bottom: 0;
   background: red;
 `;
 

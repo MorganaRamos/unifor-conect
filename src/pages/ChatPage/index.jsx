@@ -49,7 +49,8 @@ export function ChatPage() {
         <MenuGrupos />
         <Area>
           <AreaMessage>
-            <BoxMessage placeholder="Mensagem..." />
+            sss
+            {/* <BoxMessage placeholder="Mensagem..." /> */}
           </AreaMessage>
         </Area>
       </StyledRoutesPageContainer>

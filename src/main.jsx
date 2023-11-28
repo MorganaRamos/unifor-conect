@@ -6,7 +6,10 @@ import theme from "./styles/theme";
 import { Signin } from "./pages/Signin";
 import { TelaCurso } from "./pages/TelaCurso";
 import { GrupoSelecto } from "./pages/GrupoSelecto";
+import { ChatPage } from "./pages/ChatPage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+import { Routes } from "./Routes";
 
 const router = createBrowserRouter([
   {
@@ -21,21 +24,21 @@ const router = createBrowserRouter([
     path: "/curso",
     element: <TelaCurso />,
   },
-  //   {
-  //     path: "/chat",
-  //     element: <Contato/>,
-  //   },
+  {
+    path: "/chat",
+    element: <ChatPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* <RouterProvider router={router} /> */}
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       {/* <Signin /> */}
       {/* <TelaCurso /> */}
       {/* <GrupoSelecto /> */}
-      <ChatPage />
+      <Routes />
     </ThemeProvider>
   </React.StrictMode>
 );
