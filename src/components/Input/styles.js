@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const AreaInput = styled.div`
-  width: 100%;
+  width: 90%;
   max-width: 400px;
   height: 40px;
   background-color: #c8d8ff;
@@ -10,8 +10,9 @@ export const AreaInput = styled.div`
   justify-content: center;
   border-radius: 5px;
 
-  @media (max-width: 600px) {
-    width: 80%;
+  @media (max-width: 876px) {
+    width: 100%;
+   
   }
 `;
 
@@ -32,4 +33,5 @@ export const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 10px;
+  
 `;
