@@ -30,8 +30,8 @@ export function MenuGrupos() {
       </AreaTitle>
 
       <AreaButton>
-        <ButtonText title={"Disciplina"} />
-        <ButtonText title={"asdnlaskndlkas"} />
+        <ButtonText title={"Disciplina 1"} />
+        <ButtonText title={"Disciplina 2"} />
       </AreaButton>
     </StyledRoutesPageContainer>
   );
