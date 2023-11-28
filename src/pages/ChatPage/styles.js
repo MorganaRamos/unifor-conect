@@ -8,11 +8,9 @@ export const StyledRoutesPageContainer = styled.div`
 
 export const Area = styled.div`
   display: flex;
-  /* flex-direction: column; */
+  align-items: flex-end;
   width: 100%;
   height: 100vh;
-  align-items: center;
-  background: green;
 `;
 
 export const AreaMessage = styled.div`
@@ -20,10 +18,6 @@ export const AreaMessage = styled.div`
 
   width: 100%;
   margin: 20px;
-
-  position: fixed;
-  bottom: 0;
-  background: red;
 `;
 
 export const BoxMessage = styled.input`
@@ -37,9 +31,4 @@ export const BoxMessage = styled.input`
   border-radius: 12px;
 
   color: #5c5c5c;
-
-  ::placeholder {
-    /* color: #5c5c5c; */
-    color: red;
-  }
 `;
