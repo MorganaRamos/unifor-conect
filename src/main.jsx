@@ -6,6 +6,7 @@ import theme from "./styles/theme";
 import { Signin } from "./pages/Signin";
 import { TelaCurso } from "./pages/TelaCurso";
 import { GrupoSelecto } from "./pages/GrupoSelecto";
+import { ChatPage } from "./pages/ChatPage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -13,7 +14,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <GlobalStyles />
       {/* <Signin /> */}
       {/* <TelaCurso /> */}
-      <GrupoSelecto />
+      {/* <GrupoSelecto /> */}
+      <ChatPage />
     </ThemeProvider>
   </React.StrictMode>
 );
