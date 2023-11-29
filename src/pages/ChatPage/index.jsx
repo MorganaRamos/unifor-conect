@@ -6,12 +6,14 @@ import { Select } from "../../components/Select";
 
 // COMPONENTS
 import { ButtonGrupo } from "../../components/ButtonGrupo";
+import { Message } from "../../components/Message";
 
 // ESTILIZAÇÃO
 import {
   StyledRoutesPageContainer,
+  Div,
+  AreaPai,
   Area,
-  AreaMessage,
   BoxMessage,
 } from "./styles";
 
@@ -47,11 +49,14 @@ export function ChatPage() {
     <>
       <StyledRoutesPageContainer>
         <MenuGrupos />
-        <Area>
-          <AreaMessage>
+        <Div>
+          <AreaPai>
+            <Area>
+              <Message />
+            </Area>
             <BoxMessage placeholder="Mensagem..." />
-          </AreaMessage>
-        </Area>
+          </AreaPai>
+        </Div>
       </StyledRoutesPageContainer>
     </>
   );

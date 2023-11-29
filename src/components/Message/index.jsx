@@ -1,35 +1,28 @@
-// Chat.js
-import React, { useState } from "react";
-import Message from "./Message"; // Certifique-se de ter um componente Message
+import React from "react";
 
-const Message = () => {
-  const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState("");
+// ESTILIZAÇÃO
+import {
+  AreaMessage,
+  MyMessage,
+  IdClient,
+  MessageUser,
+  UserMessage,
+} from "./styles";
 
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== "") {
-      setMessages([...messages, { text: newMessage, user: "user" }]);
-      setNewMessage("");
-    }
-  };
-
+export function Message() {
   return (
-    <div>
-      <div>
-        {messages.map((message, index) => (
-          <Message key={index} text={message.text} user={message.user} />
-        ))}
-      </div>
-      <div>
-        <input
-          type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-        />
-        <button onClick={handleSendMessage}>Enviar</button>
-      </div>
-    </div>
-  );
-};
+    <>
+      <AreaMessage>
+        <MyMessage>
+          <IdClient>Usuário:</IdClient>
+          <MessageUser>Oi!</MessageUser>
+        </MyMessage>
 
-export default Chat;
+        <UserMessage>
+          <IdClient>Eu:</IdClient>
+          <MessageUser>Oie!!</MessageUser>
+        </UserMessage>
+      </AreaMessage>
+    </>
+  );
+}
