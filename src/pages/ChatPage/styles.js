@@ -9,6 +9,7 @@ export const StyledRoutesPageContainer = styled.div`
 export const Div = styled.div`
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   width: 100%;
 `;
 
@@ -31,6 +32,23 @@ export const Area = styled.div`
   width: 100%;
   /* height: 100vh; */
   /* background: green; */
+  max-height: 76vh;
+  overflow: auto;
+
+  //Estilizar a scrollbar
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #d2d2d2;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #0a42c5; /* cor do controle de rolagem */
+    border-radius: 4px;
+  }
 `;
 
 export const BoxMessage = styled.input`

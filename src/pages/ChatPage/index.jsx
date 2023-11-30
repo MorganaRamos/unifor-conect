@@ -1,4 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import {
+  addDoc,
+  collection,
+  limit,
+  orderBy,
+  query,
+  serverTimestamp,
+} from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { app, db } from "../../services/FirebaseConfig";
+
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 // COMPONENT
 import { MenuGrupos } from "../../components/MenuGrupos";
@@ -17,34 +29,29 @@ import {
   BoxMessage,
 } from "./styles";
 
-export function ChatPage() {
-  const [selectedOption, setSelectedOption] = useState("");
-  // const [options, setOptions] = useState([]);
+const auth = getAuth(app);
 
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
+export function ChatPage() {
+  // const dummy = useRef();
+  const [formValue, setFormValue] = useState("");
+  const messagesRef = collection(db, "messages");
+  const q = query(messagesRef, orderBy("createdAt"), limit(25));
+  const [messages] = useCollectionData(q, { idField: "id" });
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    const { photoURL, uid } = auth.currentUser;
+
+    await addDoc(messagesRef, {
+      text: formValue,
+      uid,
+      photoURL,
+      createdAt: serverTimestamp(),
+    });
+    setFormValue("");
+    // dummy.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  // PARA RECEBER A API
-  // useEffect(() => {
-  //   const fetchOptions = async () => {
-  //     try {
-  //       const response = await fetch("URL_DA_SUA_API_AQUI");
-  //       const data = await response.json();
-  //       setOptions(data);
-  //     } catch (error) {
-  //       console.error("Erro ao buscar opções da API", error);
-  //     }
-  //   };
-
-  //   fetchOptions();
-  // }, []);
-
-  const options = [
-    { value: "option1", label: "Cyberseguraça" },
-    { value: "option2", label: "Frontend" },
-    { value: "option3", label: "Backend" },
-  ];
   return (
     <>
       <StyledRoutesPageContainer>
@@ -52,9 +59,22 @@ export function ChatPage() {
         <Div>
           <AreaPai>
             <Area>
-              <Message />
+              {messages &&
+                messages.map((msg, index) => (
+                  <Message key={index} Text={msg.text} uid={msg.uid} />
+                ))}
             </Area>
             <BoxMessage placeholder="Mensagem..." />
+            <form onSubmit={sendMessage}>
+              <input
+                type="text"
+                value={formValue}
+                onChange={(e) => setFormValue(e.target.value)}
+              />
+              <button type="submit" disabled={!formValue}>
+                Enviar
+              </button>
+            </form>
           </AreaPai>
         </Div>
       </StyledRoutesPageContainer>

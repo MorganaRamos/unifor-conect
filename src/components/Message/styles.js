@@ -11,6 +11,7 @@ export const AreaMessage = styled.div`
 export const MyMessage = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 
   border-radius: 12px;
   padding: 10px;
@@ -28,7 +29,7 @@ export const MessageUser = styled.text``;
 export const UserMessage = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
 
   border-radius: 12px;
   padding: 10px;

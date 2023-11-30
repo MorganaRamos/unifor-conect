@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { app, db } from "../../services/FirebaseConfig";
+import { getAuth } from "firebase/auth";
 
 // ESTILIZAÇÃO
 import {
@@ -9,19 +11,37 @@ import {
   UserMessage,
 } from "./styles";
 
-export function Message() {
+const auth = getAuth(app);
+
+export function Message({ Text, uid }) {
+  const [messageUser, setMessageUser] = useState(false);
+
+  useEffect(() => {
+    const currentUserUid = auth.currentUser?.uid;
+
+    setMessageUser(currentUserUid ? uid === currentUserUid : false);
+  }, [uid]);
+
   return (
     <>
       <AreaMessage>
-        <MyMessage>
-          <IdClient>Usuário:</IdClient>
+        {/* <MyMessage>
           <MessageUser>Oi!</MessageUser>
         </MyMessage>
 
         <UserMessage>
-          <IdClient>Eu:</IdClient>
           <MessageUser>Oie!!</MessageUser>
-        </UserMessage>
+        </UserMessage> */}
+
+        {messageUser ? (
+          <MyMessage>
+            <MessageUser>{Text}</MessageUser>
+          </MyMessage>
+        ) : (
+          <UserMessage>
+            <MessageUser>{Text}</MessageUser>
+          </UserMessage>
+        )}
       </AreaMessage>
     </>
   );

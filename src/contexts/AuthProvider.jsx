@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
-import FirebaseConfig from "../services/FirebaseConfig";
+import { app, db } from "../services/FirebaseConfig";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -19,9 +19,9 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   //Inicializar o auth
-  const auth = getAuth(FirebaseConfig);
+  const auth = getAuth(app);
   //Inicializar o database
-  const database = getDatabase(FirebaseConfig);
+  const database = db;
 
   useEffect(() => {
     async function loadStorage() {
@@ -153,7 +153,7 @@ function AuthProvider({ children }) {
   }
 
   // armazenar credenciais do usuário
-  async function storageUser() {
+  async function storageUser(data) {
     //transformando os dados para string
     await AsyncStorage.setItem("Auth_user", JSON.stringify(data));
   }
