@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import bgSignin from "../../assets/images/backgroundSignin.jpg";
+import { Link } from "react-router-dom";
 
 export const StyledRoutesPageContainer = styled.div`
   display: flex;
@@ -11,12 +12,11 @@ export const StyledRoutesPageContainer = styled.div`
   background-image: url(${bgSignin});
   background-size: cover;
   background-position: center;
- 
-   
+
   @media (max-width: 876px) {
     flex-direction: row;
     justify-content: center;
-     }
+  }
 `;
 
 export const StyledDivArea = styled.div`
@@ -38,7 +38,7 @@ export const StyledDivArea = styled.div`
 `;
 
 export const DivArea = styled.div`
-max-width: 600px;
+  max-width: 600px;
 `;
 
 export const AreaLogo = styled.div`
@@ -55,8 +55,8 @@ export const AreaLogo = styled.div`
 `;
 
 export const ImgLogo = styled.img`
-width: 100%;
-max-width: 230px;
+  width: 100%;
+  max-width: 230px;
   padding: 10%;
 `;
 
@@ -67,7 +67,7 @@ export const Title = styled.text`
   color: #c8d8ff;
   // width: 217px;
   font-size: 30px;
- font-weight: 600;
+  font-weight: 600;
 
   @media (max-width: 876px) {
     font-size: 30px;
@@ -82,4 +82,11 @@ export const DivLogin = styled.div`
 
   gap: 25px;
   margin-top: 30px;
+`;
+
+export const RegisterLink = styled(Link)`
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: -5px;
 `;

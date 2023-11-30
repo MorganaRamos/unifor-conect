@@ -1,9 +1,12 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // COMPONENTS
 import { Input } from "../../components/Input";
 import { ButtonText } from "../../components/ButtonText";
+
+// CONTEXT
+import { AuthContext } from "../../contexts/auth";
 
 // Estilização
 import Logo from "../../assets/images/logoUnifor.png";
@@ -17,6 +20,7 @@ import {
   ImgLogo,
   Title,
   DivLogin,
+  RegisterLink,
 } from "./styles";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
@@ -24,6 +28,18 @@ import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 export function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
+
+  const { signUp } = useContext(AuthContext);
+
+  function handleLogin() {
+    signIn(email, password);
+  }
+
+  function handleSignUp() {
+    signUp(email, password);
+  }
 
   return (
     <>
@@ -69,6 +85,10 @@ export function Signin() {
               />
 
               <ButtonText title={"Entrar"} isActive={true} />
+
+              <RegisterLink onClick={signInWithGoogle} to={""}>
+                Entrar com Google
+              </RegisterLink>
             </DivLogin>
           </DivArea>
         </StyledDivArea>
