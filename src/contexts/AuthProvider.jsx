@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
-import firebaseConnection from "../services/firebaseConnection";
+import FirebaseConfig from "../services/FirebaseConfig";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -12,16 +12,16 @@ import {
 import { set, ref, getDatabase, get } from "firebase/database";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
   //Inicializar o auth
-  const auth = getAuth(firebaseConnection);
+  const auth = getAuth(FirebaseConfig);
   //Inicializar o database
-  const database = getDatabase(firebaseConnection);
+  const database = getDatabase(FirebaseConfig);
 
   useEffect(() => {
     async function loadStorage() {
@@ -39,6 +39,31 @@ function AuthProvider({ children }) {
 
     loadStorage();
   }, []);
+
+  // SINGNIN
+  async function signIn() {
+    signInWithEmailAndPassword(auth, email, password)
+      //Se der tudo certo
+      .then(async (value) => {
+        //pegando o id
+        let uid = value.user.uid;
+        //capturar os dados do usuário
+        await get(ref(database, `users/${uid}`)).then((snapshot) => {
+          let userData = {
+            uid: uid,
+            nome: snapshot.val().nome,
+            email: value.user.email,
+          };
+
+          setUser(userData);
+          storageUser(userData); //armazenar informações do usuário
+        });
+      })
+      .catch((error) => {
+        //Erro padrão do firebase
+        alert(error.code);
+      });
+  }
 
   // SINGIN COM GOOGLE
   async function signInWithGoogle() {
@@ -61,6 +86,32 @@ function AuthProvider({ children }) {
       // Ocorreu um erro durante o login com o Google
       console.log(error);
     }
+  }
+
+  // SIGNUP USUÁRIO
+  async function signUp() {
+    //Criar um usuário no firebase
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async (value) => {
+        let uid = value.user.uid; // acessar o id do usuário
+
+        await set(ref(database, `users/${uid}`), {
+          nome: nome,
+          email: email,
+        }).then(() => {
+          let data = {
+            uid: uid,
+            nome: nome,
+            email: value.user.email,
+          };
+          setUser(data);
+          storageUser(data); //armazenar informações do usuário
+        });
+      })
+      .catch((error) => {
+        //Erro padrão do firebase
+        alert(error.code);
+      });
   }
 
   // SIGNUP USUÁRIO COM GOOGLE
@@ -101,64 +152,8 @@ function AuthProvider({ children }) {
     }
   }
 
-  //LOGAR O USUÁRIO
-  async function signIn(email, password) {
-    signInWithEmailAndPassword(auth, email, password)
-      //Se der tudo certo
-      .then(async (value) => {
-        //pegando o id
-        let uid = value.user.uid;
-
-        //capturar os dados do usuário
-        await get(ref(database, `users/${uid}`)).then((snapshot) => {
-          let data = {
-            uid: uid,
-            nome: snapshot.val().nome,
-            email: value.user.email,
-          };
-
-          setUser(data);
-          storageUser(data); //armazenar informações do usuário
-        });
-      })
-      .catch((error) => {
-        //Erro padrão do firebase
-        alert(error.code);
-      });
-  }
-
-  //CADASTRAR USUÁRIO
-  async function signUp(email, password, nome) {
-    //Criar um usuário no firebase
-    createUserWithEmailAndPassword(auth, email, password)
-      //Se deu tudo certo
-      .then(async (value) => {
-        let uid = value.user.uid; //Acessar o id do usuário
-
-        //Criar no database o id do usuário e criar seu nome e saldo no database
-        await set(ref(database, `users/${uid}`), {
-          saldo: 0,
-          nome: nome,
-        }).then(() => {
-          //armazenando o id, nome e email
-          let data = {
-            uid: uid,
-            nome: nome,
-            email: value.user.email,
-          };
-
-          setUser(data);
-          storageUser(data); //armazenar informações do usuário
-        });
-      })
-      .catch((error) => {
-        //Erro padrão do firebase
-        alert(error.code);
-      });
-  }
-
-  //armazenar credenciais do usuário
-  async function storageUser(data) {
+  // armazenar credenciais do usuário
+  async function storageUser() {
     //transformando os dados para string
     await AsyncStorage.setItem("Auth_user", JSON.stringify(data));
   }
@@ -181,8 +176,11 @@ function AuthProvider({ children }) {
         signed: !!user,
         user,
         signUp,
-        signInWithGoogle,
         signUpWithGoogle,
+        signIn,
+        signInWithGoogle,
+        signOut,
+        loading,
       }}
     >
       {children}

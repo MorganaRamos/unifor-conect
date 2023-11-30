@@ -6,7 +6,7 @@ import { Input } from "../../components/Input";
 import { ButtonText } from "../../components/ButtonText";
 
 // CONTEXT
-import { AuthContext } from "../../contexts/auth";
+import { useAuth } from "../../contexts/AuthProvider";
 
 // Estilização
 import Logo from "../../assets/images/logoUnifor.png";
@@ -29,16 +29,10 @@ export function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn, signInWithGoogle } = useContext(AuthContext);
-
-  const { signUp } = useContext(AuthContext);
+  const { signIn, signInWithGoogle } = useAuth();
 
   function handleLogin() {
     signIn(email, password);
-  }
-
-  function handleSignUp() {
-    signUp(email, password);
   }
 
   return (
